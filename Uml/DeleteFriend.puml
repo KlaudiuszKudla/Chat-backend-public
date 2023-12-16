@@ -1,0 +1,20 @@
+@startuml
+title Usuwanie Znajomego
+
+|User|
+start
+:Wyświetl listę znajomych;
+|User|
+:Usuń Znajomego;
+
+
+  if (Usunięcie powiodło się?) then (tak)
+    :Wyświetl komunikat o usunięciu;
+  else (nie)
+    :Wyświetl komunikat o niepowodzeniu usunięcia;
+  endif
+  :Powrót do listy znajomych;
+
+|User|
+stop
+@enduml

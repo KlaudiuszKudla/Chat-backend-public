@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Wyświetl stronę logowania;
+    repeat
+    :Wprowadź dane do logowania;
+    repeat while (Prawidłowe dane?) is (nie)
+:Zaloguj użytkownika;
+stop
+
+@enduml

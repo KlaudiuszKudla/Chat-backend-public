@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Pomiar;
+:Rozmycie wyników pomiaru;
+
+rectangle "System wnioskowania" {
+  :Zasady\nwnioskowania;
+}
+
+:Wyostrzenie wartości wyjściowych;
+:Prezentacja danych;
+stop
+
+@enduml

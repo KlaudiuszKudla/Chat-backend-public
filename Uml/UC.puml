@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+
+actor Zarejstrowany_użytkownik as RU
+actor Zalogowany_użytkownik as ZU
+actor Niezarejstrowany_użytkownik as NU
+actor Admin as A
+
+package Prowadzenie_Czatu {
+  usecase "Wysyłanie wiadomości" as UC1
+  usecase "Odbieranie wiadomości" as UC2
+  usecase "Przeglądanie wiadmości" as UC3
+  usecase "Prowadzenia rozmowy wideo" as UC4
+}
+
+
+
+ZU --> UC1
+ZU --> UC2
+
+ZU --> UC3
+ZU --> UC4
+
+ZU --> (Wylogowanie)
+ZU --> (Wyszukiwanie znajomych)
+(Wyszukiwanie znajomych) --> (Dodanie znajomego)
+(Wyszukiwanie znajomych) --> (Usunięcie znajomego)
+(Wyszukiwanie znajomych) --> (Zablokowanie znajomego)
+
+
+RU --> (Logowanie)
+RU --> (Odzyskanie hasła)
+
+NU --> (Rejestracja)
+
+A --> (Utrzymanie bazy danych)
+A --> (Zapewnienie bezpieczeństwa użytkownikom)
+
+
+@enduml

@@ -1,0 +1,91 @@
+@startuml
+!define SPRITESURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define ICONURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define SPRITESURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define SPRITEURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define SPRITEPATH sprites
+
+!define ICONSURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define ICONPATH icons
+
+!define ARTIFACTURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define ARTIFACTPATH artifacts
+!define MAINURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define MAINPATH mains
+!define STATEURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define STATEPATH states
+!define USECASEURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define USECASEPATH usecases
+!define CLASSURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define CLASSPATH classes
+!define SEQUENCEURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define SEQUENCEPATH sequences
+
+!define SPRITE(x) image $SPRITEURL/$SPRITEPATH/x width=48
+!define ICON(x) image $ICONURL/$ICONPATH/x width=48
+!define ARTIFACT(x) image $ARTIFACTURL/$ARTIFACTPATH/x width=48
+!define MAIN(x) image $MAINURL/$MAINPATH/x width=48
+!define STATE(x) image $STATEURL/$STATEPATH/x width=48
+!define USECASE(x) image $USECASEURL/$USECASEPATH/x width=48
+!define CLASS(x) image $CLASSURL/$CLASSPATH/x width=48
+!define SEQUENCE(x) image $SEQUENCEURL/$SEQUENCEPATH/x width=48
+
+!define SPRITE_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define SPRITE_DOCPATH sprite-documentation
+!define ICON_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define ICON_DOCPATH icon-documentation
+!define ARTIFACT_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define ARTIFACT_DOCPATH artifact-documentation
+!define MAIN_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define MAIN_DOCPATH main-documentation
+!define STATE_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define STATE_DOCPATH state-documentation
+!define USECASE_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define USECASE_DOCPATH usecase-documentation
+!define CLASS_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define CLASS_DOCPATH class-documentation
+!define SEQUENCE_DOCURL https://raw.githubusercontent.com/rabelendaug/bitmap-icons-maven/master
+!define SEQUENCE_DOCPATH sequence-documentation
+
+!define SPRITE_DOC(x) image $SPRITE_DOCURL/$SPRITE_DOCPATH/x width=48
+!define ICON_DOC(x) image $ICON_DOCURL/$ICON_DOCPATH/x width=48
+!define ARTIFACT_DOC(x) image $ARTIFACT_DOCURL/$ARTIFACT_DOCPATH/x width=48
+!define MAIN_DOC(x) image $MAIN_DOCURL/$MAIN_DOCPATH/x width=48
+!define STATE_DOC(x) image $STATE_DOCURL/$STATE_DOCPATH/x width=48
+!define USECASE_DOC(x) image $USECASE_DOCURL/$USECASE_DOCPATH/x width=48
+!define CLASS_DOC(x) image $CLASS_DOCURL/$CLASS_DOCPATH/x width=48
+!define SEQUENCE_DOC(x) image $SEQUENCE_DOCURL/$SEQUENCE_DOCPATH/x width=48
+!define BG_COLOR #EEEBDC
+!define ENTITY_BORDER_COLOR #587792
+
+package "Microservices" {
+  [Auth Service]
+  [WebSocket Service]
+}
+
+package "Auth Service"{
+    [Auth Controller]
+    [Service]
+    [Repository]
+}
+
+package "WebSocket Service"{
+    [WebSocket Controller]
+}
+
+database "Database" {
+}
+
+[User] --> [Application]
+[Application] --> [Api Gateway]
+[Api Gateway] --> [Load Balancer]
+[Api Gateway] --> [Service Discovery]
+[Load Balancer] --> [Microservices]
+[Microservices] --> [Auth Service]
+[Microservices] --> [WebSocket Service]
+[Auth Service] --> [Database]
+
+
+
+
+@enduml

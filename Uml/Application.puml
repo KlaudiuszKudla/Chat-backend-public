@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Zaloguj się;
+:Wyświetl listę znajomych;
+:Rozpocznij czat;
+:Wyloguj się;
+stop
+
+
+@enduml

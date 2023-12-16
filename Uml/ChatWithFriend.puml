@@ -1,0 +1,28 @@
+@startuml
+title Prowadzenie Czatu
+
+|User|
+start
+:Prowadź czat;
+:Wyświetl okno czatu;
+|User|
+
+if (Rozpocznij prowadzenie czatu?) then (tak)
+
+
+  repeat
+    :Użytkownik pisze wiadomość;
+    if (Wiadomość poprawna?) then (tak)
+      :Wyślij wiadomość;
+    else (nie)
+      :Wyświetl komunikat o błędzie;
+    endif
+  repeat while (Użytkownik chce wysłać wiadomość?);
+
+else (nie)
+  end;
+endif
+
+|User|
+stop
+@enduml

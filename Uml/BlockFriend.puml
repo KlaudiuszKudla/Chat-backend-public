@@ -1,0 +1,20 @@
+@startuml
+title Usuwanie Znajomego
+
+|User|
+start
+:Wyświetl listę znajomych;
+|User|
+:Zablokuj;
+
+
+  if (Blokowanie powiodło się?) then (tak)
+    :Wyświetl komunikat o zablokowaniu;
+  else (nie)
+    :Wyświetl komunikat o niepowodzeniu blokowania;
+  endif
+  :Powrót do listy znajomych;
+
+|User|
+stop
+@enduml

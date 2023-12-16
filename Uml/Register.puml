@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Wyświetl stronę rejestracji;
+    repeat
+    :Wprowadź dane do rejestracji;
+    repeat while (Prawidłowe dane?) is (nie)
+:Zarejestruj użytkownika;
+stop
+
+@enduml

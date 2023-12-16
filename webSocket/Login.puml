@@ -1,0 +1,11 @@
+@startuml
+
+start
+:Zaloguj się;
+:Wyświetl listę znajomych;
+:Rozpocznij czat;
+:Wyloguj się;
+
+stop
+
+@enduml
