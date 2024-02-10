@@ -7,9 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="webSocket" />
+        <module name="RegisterEndpointInformation" />
+        <module name="file-service" />
         <module name="eureka" />
         <module name="gateway" />
-        <module name="chat" />
       </profile>
       <profile name="Annotation profile for auth" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -24,6 +25,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="chat" target="17" />
+      <module name="fileservice" target="17" />
       <module name="gatway" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -32,6 +35,8 @@
       <module name="auth" options="-parameters -Amapstruct.defaultComponentModel=spring" />
       <module name="chat" options="-parameters" />
       <module name="eureka" options="-parameters" />
+      <module name="file-service" options="-parameters" />
+      <module name="fileservice" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gatway" options="-parameters" />
       <module name="webSocket" options="-parameters" />

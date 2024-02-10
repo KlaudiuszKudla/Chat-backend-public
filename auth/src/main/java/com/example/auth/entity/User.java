@@ -1,11 +1,7 @@
 package com.example.auth.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,10 +23,9 @@ import java.util.*;
         private String password;
         @Enumerated(EnumType.STRING)
         private Role role;
-        @Column(name = "islock")
-        private boolean isLock;
-        @Column(name = "isenabled")
+        private boolean isLocked;
         private boolean isEnabled;
+        private String imageUuid;
 
         @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
         @JoinTable(
@@ -43,14 +38,14 @@ import java.util.*;
     public User(){
         generateUuid();
     }
-    public User(long id, String uuid, String login, String email, String password, Role role, boolean isLock, boolean isEnabled) {
+    public User(long id, String uuid, String login, String email, String password, Role role, boolean isLocked, boolean isEnabled) {
         this.id = id;
         this.uuid = uuid;
         this.login = login;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.isLock = isLock;
+        this.isLocked = isLocked;
         this.isEnabled = isEnabled;
         generateUuid();
     }
@@ -70,8 +65,14 @@ import java.util.*;
     public Set<User> getFriends() {
         return friends;
     }
+    public String getImageUuid(){
+        return imageUuid;
+    }
+    public boolean isLocked() {
+            return isLocked;
+        }
 
-    @Override
+        @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
@@ -93,7 +94,7 @@ import java.util.*;
 
     @Override
     public boolean isAccountNonLocked() {
-        return !isLock;
+        return !isLocked;
     }
 
     @Override
@@ -105,6 +106,8 @@ import java.util.*;
     public boolean isEnabled() {
         return isEnabled;
     }
+
+
     private void generateUuid(){
         if (uuid == null || uuid.equals("")){
             setUuid(UUID.randomUUID().toString());

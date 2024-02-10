@@ -1,0 +1,2 @@
+ALTER TABLE image_data
+DROP COLUMN IF EXISTS pathfile;

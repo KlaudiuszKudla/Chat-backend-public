@@ -6,6 +6,7 @@ CREATE TABLE "users"
     email     varchar not null,
     password  varchar not null,
     role      varchar not null,
-    isLock    boolean DEFAULT true,
-    isEnabled boolean DEFAULT false
+    is_locked boolean DEFAULT true,
+    is_enabled boolean DEFAULT false,
+    image_uuid varchar DEFAULT null
 );

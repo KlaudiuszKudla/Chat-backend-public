@@ -132,6 +132,17 @@ public class AuthController{
             return ResponseEntity.status(400).body(new Response(Code.USER_NOT_EXIST));
         }
     }
+
+    @PatchMapping(path = "/change-user-data")
+    public ResponseEntity<Response> changeUserData(@RequestBody ChangeUserData changeUserData){
+        try{
+            userService.changeUserData(changeUserData);
+            return ResponseEntity.ok(new Response(Code.SUCCESS));
+        } catch (UserDontExistException e){
+            return ResponseEntity.status(400).body(new Response(Code.USER_NOT_EXIST));
+        }
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ValidationMessage handleValidationExceptions(

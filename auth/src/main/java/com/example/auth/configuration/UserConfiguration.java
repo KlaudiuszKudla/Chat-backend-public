@@ -39,7 +39,7 @@ public class UserConfiguration {
                         "api/v1/friend/blockFriend", "api/v1/friend/getFriends", "api/v1/friend/deleteFriend"
                         ,"api/v1/friend/getFriendsRequest", "api/v1/friend/getFriendsSentRequest"
                         ,"/api/v1/auth/logged-in",
-                        "/api/v1/auth/authorize").permitAll()
+                        "/api/v1/auth/authorize", "/api/v1/auth/change-user-data").permitAll()
                 .and()
                 .build();
     }

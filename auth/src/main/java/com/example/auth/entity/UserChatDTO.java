@@ -17,6 +17,7 @@ public class UserChatDTO {
     private String uuid;
     private String login;
     private String email;
+    private String imageUrl;
 
 
 }

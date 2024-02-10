@@ -18,5 +18,6 @@ public abstract class UserToUserChatDTO {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "login", source = "username")
     @Mapping(target = "email", source = "email")
+    @Mapping(target = "imageUrl", source = "imageUuid")
     protected abstract UserChatDTO translateToUserChatDTO(User user);
 }

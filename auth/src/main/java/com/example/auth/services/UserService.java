@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -114,7 +115,7 @@ public class UserService {
                 }
             }
             String login = jwtService.getSubject(refresh);
-            User user = userRepository.findUserByLoginAndLockAndEnabled(login).orElse(null);
+            User user = userRepository.findUserByLoginAndIsLockedFalseAndIsEnabledTrue(login).orElse(null);
             if (user != null){
                 return ResponseEntity.ok(
                         UserRegisterDTO
@@ -145,7 +146,7 @@ public class UserService {
             throw new UserExistingWithMail("Users alredy exist with this mail");
         });
         User user = new User();
-        user.setLock(true);
+        user.setLocked(true);
         user.setEnabled(false);
         user.setLogin(userRegisterDTO.getLogin());
         user.setPassword(userRegisterDTO.getPassword());
@@ -158,7 +159,7 @@ public class UserService {
 
     public ResponseEntity<?> login(HttpServletResponse response, User authRequest) {
         log.info("--START LoginService");
-        User user = userRepository.findUserByLoginAndLockAndEnabled(authRequest.getUsername()).orElse(null);
+        User user = userRepository.findUserByLoginAndIsLockedFalseAndIsEnabledTrue(authRequest.getUsername()).orElse(null);
         if (user != null) {
             Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
             if (authenticate.isAuthenticated()) {
@@ -197,7 +198,7 @@ public class UserService {
     public void activateUser(String uid) throws UserDontExistException{
         User user = userRepository.findUserByUuid(uid).orElse(null);
         if (user != null){
-            user.setLock(false);
+            user.setLocked(false);
             user.setEnabled(true);
             userRepository.save(user);
             return;
@@ -251,6 +252,17 @@ public class UserService {
             String subject = jwtService.getSubject(refresh);
             userRepository.findUserByLoginAndLockAndEnabledAndIsAdmin(subject).orElseThrow(()->new UserDontExistException("User not found"));
         }
+    }
+
+
+    public void changeUserData(ChangeUserData changeUserData) throws UserDontExistException {
+        User user = userRepository.findUserById(changeUserData.getId())
+                .orElseThrow(() -> new UserDontExistException("User doesn't exist"));
+
+        Optional.ofNullable(changeUserData.getLogin()).ifPresent(user::setLogin);
+        Optional.ofNullable(changeUserData.getPassword()).ifPresent(user::setPassword);
+        Optional.ofNullable(changeUserData.getImageUrl()).ifPresent(user::setImageUuid);
+        saveUser(user);
     }
 
 }
